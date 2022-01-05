@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="aspnetmvc_dbModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="aspnetmvc_dbModel1StoreContainer">
+          <EntitySet Name="categorie" EntityType="aspnetmvc_dbModel1.Store.categorie" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="produit" EntityType="aspnetmvc_dbModel1.Store.produit" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__produit__categor__1273C1CD" Association="aspnetmvc_dbModel1.Store.FK__produit__categor__1273C1CD">
+            <End Role="categorie" EntitySet="categorie" />
+            <End Role="produit" EntitySet="produit" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="categorie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NomCategorie" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="produit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="categorieId" Type="int" />
+          <Property Name="NomProduit" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__produit__categor__1273C1CD">
+          <End Role="categorie" Type="aspnetmvc_dbModel1.Store.categorie" Multiplicity="0..1" />
+          <End Role="produit" Type="aspnetmvc_dbModel1.Store.produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="produit">
+              <PropertyRef Name="categorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="aspnetmvc_dbModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="aspnetmvc_dbEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="aspnetmvc_dbModel1.categorie" />
+          <EntitySet Name="produits" EntityType="aspnetmvc_dbModel1.produit" />
+          <AssociationSet Name="FK__produit__categor__1273C1CD" Association="aspnetmvc_dbModel1.FK__produit__categor__1273C1CD">
+            <End Role="categorie" EntitySet="categories" />
+            <End Role="produit" EntitySet="produits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="categorie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NomCategorie" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="produits" Relationship="aspnetmvc_dbModel1.FK__produit__categor__1273C1CD" FromRole="categorie" ToRole="produit" />
+        </EntityType>
+        <EntityType Name="produit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="categorieId" Type="Int32" />
+          <Property Name="NomProduit" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="categorie" Relationship="aspnetmvc_dbModel1.FK__produit__categor__1273C1CD" FromRole="produit" ToRole="categorie" />
+        </EntityType>
+        <Association Name="FK__produit__categor__1273C1CD">
+          <End Role="categorie" Type="aspnetmvc_dbModel1.categorie" Multiplicity="0..1" />
+          <End Role="produit" Type="aspnetmvc_dbModel1.produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="produit">
+              <PropertyRef Name="categorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="aspnetmvc_dbModel1StoreContainer" CdmEntityContainer="aspnetmvc_dbEntities1">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="aspnetmvc_dbModel1.categorie">
+              <MappingFragment StoreEntitySet="categorie">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NomCategorie" ColumnName="NomCategorie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produits">
+            <EntityTypeMapping TypeName="aspnetmvc_dbModel1.produit">
+              <MappingFragment StoreEntitySet="produit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="categorieId" ColumnName="categorieId" />
+                <ScalarProperty Name="NomProduit" ColumnName="NomProduit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

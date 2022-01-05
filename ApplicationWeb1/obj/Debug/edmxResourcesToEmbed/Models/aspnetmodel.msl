@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="aspnetmvc_dbModel1StoreContainer" CdmEntityContainer="aspnetmvc_dbEntities1">
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="aspnetmvc_dbModel1.categorie">
+        <MappingFragment StoreEntitySet="categorie">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NomCategorie" ColumnName="NomCategorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produits">
+      <EntityTypeMapping TypeName="aspnetmvc_dbModel1.produit">
+        <MappingFragment StoreEntitySet="produit">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="categorieId" ColumnName="categorieId" />
+          <ScalarProperty Name="NomProduit" ColumnName="NomProduit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

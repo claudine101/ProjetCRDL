@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="aspnetmvc_dbModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="aspnetmvc_dbModel1StoreContainer">
+    <EntitySet Name="categorie" EntityType="aspnetmvc_dbModel1.Store.categorie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="produit" EntityType="aspnetmvc_dbModel1.Store.produit" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__produit__categor__1273C1CD" Association="aspnetmvc_dbModel1.Store.FK__produit__categor__1273C1CD">
+      <End Role="categorie" EntitySet="categorie" />
+      <End Role="produit" EntitySet="produit" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="categorie">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NomCategorie" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="produit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="categorieId" Type="int" />
+    <Property Name="NomProduit" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__produit__categor__1273C1CD">
+    <End Role="categorie" Type="aspnetmvc_dbModel1.Store.categorie" Multiplicity="0..1" />
+    <End Role="produit" Type="aspnetmvc_dbModel1.Store.produit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorie">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="produit">
+        <PropertyRef Name="categorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
